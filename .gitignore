@@ -1,6 +1,6 @@
 /tests/
 /debugging_result.json
-/main.py
+/demo_cli.py
 /.env
 venv/
 .idea/

@@ -1,4 +1,8 @@
-# Game giveaways
+# Game giveaways 
+
+As a parser this provides simplicity and reliability.
+
+As a piece of code this provides high readability and extendability. 
 
 - Status: In development
 - Platforms: Steam
@@ -9,26 +13,28 @@
     - -100% discounted DLC-s
     - Temporarily free to access games (aka Free Weekend)
 
-# Information
-- Steam: Information gathered from SteamAPI, Steam Store
+For more detailed information read [documentation.md](documentation.md)
 
+---
+# Information
+
+- Steam: gathered from SteamAPI, Steam Store (none of them frequently change the structure)
+
+---
 # Integration
 
 The output follows REST principles, so it needs only iterating over the result:
-    Example from `demo.py`
+Example from `demo.py`
 
 ```python
 import streamlit as st
 from app import App
 
 deals = App.get_deals(steam_free_weekend=True, steam_giveaways=True)
-print(deals)
 
-for tag, val in deals.items():
-    if not val:
-        continue
-    else:
-        match tag:
+for key, val in deals.items():
+    if val:
+        match key:
             case 'steam_giveaways':
                 st.title("Steam Giveaways")
             case 'steam_free_weekend':
@@ -46,9 +52,10 @@ Result:
 
 ![img.png](github%2Fimg.png)
 
----
-Simplicity and reliability.
+*_No current 'free weekend' at this moment._
 
 ---
+
+# Credits:
 
 Armen-Jean Andreasian, 2024
