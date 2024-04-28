@@ -1,0 +1,11 @@
+/tests/
+/debugging_result.json
+/main.py
+/.env
+venv/
+.idea/
+.git/
+*.pyc
+__pycache__/
+error.log
+/dev
