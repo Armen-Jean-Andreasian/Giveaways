@@ -1,4 +1,15 @@
-# Content
+# Parsing
+
+## Info
+
+- Steam API: has no protection. To see max amount requests, check Steam API docs
+- Steam website: has no protection. Any amount of requests
+- Epic Games website: has Cloudflare anti-bot protection (not anti-scrap)
+- Gog website: has no protection. Any amount of requests
+
+---
+
+# Content (we hunt for)
 
 Content is the data needed to scrap, it could be txt/img/video, etc
 
@@ -109,7 +120,7 @@ This model allows to save the chain of tags together.
 In this example:
 
 ```python
-from models import HtmlStructure
+from src.models import HtmlStructure
 
 html_tag_structure = HtmlStructure()
 html_tag_structure.add_tag_val(tag='class', value='logo')

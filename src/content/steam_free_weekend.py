@@ -1,32 +1,32 @@
 from .content_types import RequestableContent
-from models import ResponseModel
+from src.models import ResponseModel
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from scraping import SteamApiScraper
+    from src.scraping import SteamApiScraper
 
 
 class SteamFreeWeekend(RequestableContent):
     api_url = "https://store.steampowered.com/api/featuredcategories/"
     identifier = "steam_free_weekend"
 
-    def __init__(self, api_scraper: 'SteamApiScraper'):
+    def __init__(self, steam_api_scraper: 'SteamApiScraper'):
         """
-        :param api_scraper: the Scraper object for APIs. In this case SteamApiScraper, which substituted ApiScraper
+        :param steam_api_scraper: the Scraper object for APIs. In this case SteamApiScraper, which substituted ApiScraper
 
         Attributes:
             - self.api_response: the response from Steam API. It is standardized.
             - self.parsed_status: keeping tracked if we analyzed the data yet
             - self.result: a list of ResponseModel's prototype dictionaries
         """
-        self.steam_api_scraper: 'SteamApiScraper' = api_scraper
+        self.steam_api_scraper: 'SteamApiScraper' = steam_api_scraper
         # noinspection PyTypeChecker
         self.api_response: dict = None
         # noinspection PyTypeChecker
         self.result: dict[str:list] = None  # {'steam_free_weekend': []}
 
     def _fetch_content(self):
-        self.api_response = self.steam_api_scraper.get_api(url=self.api_url).json()
+        self.api_response = self.steam_api_scraper.get(url=self.api_url).json()
         return self
 
     def _analyze_response(self):
@@ -80,7 +80,7 @@ class SteamFreeWeekend(RequestableContent):
             raise _
 
     @property
-    def content(self) -> dict[str:list]:
+    def content(self) -> dict[str, list]:
         # lazy initialization techniques
         if self.api_response is None:
             self._fetch_content()

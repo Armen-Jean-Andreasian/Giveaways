@@ -1,10 +1,10 @@
 from bs4 import BeautifulSoup
 from typing import TYPE_CHECKING
 from .content_types import ScrapableContent
-from models import ResponseModel
+from src.models import ResponseModel
 
 if TYPE_CHECKING:
-    from scraping import SteamGiveawaysScraper
+    from src.scraping import SteamWebScraper
 
 
 class SteamGiveaways(ScrapableContent):
@@ -17,7 +17,7 @@ class SteamGiveaways(ScrapableContent):
         'specials': '1',
     }
 
-    def __init__(self, steam_giveaways_scraper: 'SteamGiveawaysScraper'):
+    def __init__(self, steam_giveaways_scraper: 'SteamWebScraper'):
         self.steam_giveaways_scraper = steam_giveaways_scraper
         # noinspection PyTypeChecker
         self.response: bytes = None
@@ -25,7 +25,7 @@ class SteamGiveaways(ScrapableContent):
         self.result: dict[str:list] = None
 
     def _fetch_content(self):
-        self.response = self.steam_giveaways_scraper.get_url(url=self.url, params=self.params).content
+        self.response = self.steam_giveaways_scraper.get(url=self.url, params=self.params).content
         return self
 
     def _analyze_response(self):

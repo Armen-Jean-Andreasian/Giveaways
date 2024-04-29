@@ -1,12 +1,12 @@
 import unittest
-from content import SteamFreeWeekend
-from scraping import SteamApiScraper
+from src.content import SteamFreeWeekend
+from src.scraping import SteamApiScraper
 
 
 class TestSteamFreeWeekend(unittest.TestCase):
     def setUp(self):
         self.mock_api_scraper = SteamApiScraper()
-        self.steam_free_weekend = SteamFreeWeekend(api_scraper=self.mock_api_scraper)
+        self.steam_free_weekend = SteamFreeWeekend(steam_api_scraper=self.mock_api_scraper)
 
     def test_content_return_type(self):
         content: dict[list[dict]] = self.steam_free_weekend.content

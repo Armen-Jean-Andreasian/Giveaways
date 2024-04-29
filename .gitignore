@@ -1,4 +1,4 @@
-/tests/
+/utils/tests/
 /debugging_result.json
 /demo_cli.py
 /.env
@@ -9,3 +9,4 @@ venv/
 __pycache__/
 error.log
 /dev
+/debugging_result.html

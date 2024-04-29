@@ -13,7 +13,7 @@ As a piece of code this provides high readability and extendability.
     - -100% discounted DLC-s
     - Temporarily free to access games (aka Free Weekend)
 
-For more detailed information read [documentation.md](documentation.md)
+For more detailed information read [documentation.md](docs/documentation.md)
 
 ---
 # Information
@@ -28,7 +28,7 @@ Example from `demo.py`
 
 ```python
 import streamlit as st
-from app import App
+from src.app import App
 
 deals = App.get_deals(steam_free_weekend=True, steam_giveaways=True)
 

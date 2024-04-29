@@ -1,10 +1,10 @@
 from abc import ABC, abstractmethod
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from scraping.scrap_api import ApiScraper
-    from scraping.scrap_url import PageScraper
-    from models import HtmlStructure
+    from src.scraping import ApiScraper
+    from src.scraping.scrapers import PageScraper
+    from src.models import HtmlStructure
 
 
 class Content(ABC):
@@ -49,7 +49,7 @@ class Content(ABC):
 class ScrapableContent(Content, ABC):
     """
     Content that should be scraped from a website.
-    It could be done using requests, selenium, etc.
+    It could be done using requests, selenium_, etc.
     It may be protected.
     """
     url: str

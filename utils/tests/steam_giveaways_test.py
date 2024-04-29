@@ -1,11 +1,11 @@
 import unittest
-from content import SteamGiveaways
-from scraping import SteamGiveawaysScraper
+from src.content import SteamGiveaways
+from src.scraping import SteamWebScraper
 
 
 class TestSteamGiveaways(unittest.TestCase):
     def setUp(self):
-        self.mock_page_scraper = SteamGiveawaysScraper()
+        self.mock_page_scraper = SteamWebScraper()
         self.steam_giveaways = SteamGiveaways(steam_giveaways_scraper=self.mock_page_scraper)
 
     def test_content_return_type(self):
