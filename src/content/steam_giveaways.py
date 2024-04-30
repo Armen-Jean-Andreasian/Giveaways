@@ -17,8 +17,8 @@ class SteamGiveaways(ScrapableContent):
         'specials': '1',
     }
 
-    def __init__(self, steam_giveaways_scraper: 'SteamWebScraper'):
-        self.steam_giveaways_scraper = steam_giveaways_scraper
+    def __init__(self, scraper: 'SteamWebScraper'):
+        self.steam_giveaways_scraper = scraper
         # noinspection PyTypeChecker
         self.response: bytes = None
         # noinspection PyTypeChecker

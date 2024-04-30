@@ -6,7 +6,7 @@ from src.scraping import SteamWebScraper
 class TestSteamGiveaways(unittest.TestCase):
     def setUp(self):
         self.mock_page_scraper = SteamWebScraper()
-        self.steam_giveaways = SteamGiveaways(steam_giveaways_scraper=self.mock_page_scraper)
+        self.steam_giveaways = SteamGiveaways(scraper=self.mock_page_scraper)
 
     def test_content_return_type(self):
         content: dict[list[dict]] = self.steam_giveaways.content

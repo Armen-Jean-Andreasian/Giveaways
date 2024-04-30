@@ -10,16 +10,16 @@ class SteamFreeWeekend(RequestableContent):
     api_url = "https://store.steampowered.com/api/featuredcategories/"
     identifier = "steam_free_weekend"
 
-    def __init__(self, steam_api_scraper: 'SteamApiScraper'):
+    def __init__(self, scraper: 'SteamApiScraper'):
         """
-        :param steam_api_scraper: the Scraper object for APIs. In this case SteamApiScraper, which substituted ApiScraper
+        :param scraper: the Scraper object for APIs. In this case SteamApiScraper, which substituted ApiScraper
 
         Attributes:
             - self.api_response: the response from Steam API. It is standardized.
             - self.parsed_status: keeping tracked if we analyzed the data yet
             - self.result: a list of ResponseModel's prototype dictionaries
         """
-        self.steam_api_scraper: 'SteamApiScraper' = steam_api_scraper
+        self.steam_api_scraper: 'SteamApiScraper' = scraper
         # noinspection PyTypeChecker
         self.api_response: dict = None
         # noinspection PyTypeChecker

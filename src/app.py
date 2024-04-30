@@ -3,41 +3,40 @@ from .scraping import SteamApiScraper, SteamWebScraper, EpicWebScraper
 from .logger import Logger
 from .misc import TimeTracker
 from .cache import Cache
-from typing import Callable
+from typing import Callable, Union
+
+Giveaway = Union[type(SteamFreeWeekend), type(SteamGiveaways), type(EpicGamesGiveaways)]
+Scraper = Union[type(SteamApiScraper), type(SteamWebScraper), type(EpicWebScraper)]
 
 
 class DataObtainer:
     logger = Logger()
 
     @classmethod
-    def _obtain_data_from_server(cls, giveaway_class: type, scraper_class: type) -> dict:
-        try:
-            giveaway_obj = giveaway_class(scraper_class())
-            return giveaway_obj.content
-        except Exception as e:
-            cls.logger.log_exception(msg=f"Error in obtaining data: {e}")
-            return {}
+    def _get_data_from_server(
+            cls,
+            giveaway_type: Giveaway,
+            scraper_type: Scraper) -> dict[str, list]:
 
-    @classmethod
-    def _data_from_server(cls, giveaway_type: SteamFreeWeekend | SteamGiveaways | EpicGamesGiveaways,
-                          scraper_type: SteamApiScraper | SteamWebScraper | EpicWebScraper) -> dict[str, list]:
         try:
-            return cls._obtain_data_from_server(giveaway_class=giveaway_type, scraper_class=scraper_type)
+            # Instantiate the appropriate promo object based on giveaway_type
+            promo = giveaway_type(scraper=scraper_type())
+            return promo.content
         except Exception as e:
             cls.logger.log_exception(f"Error in {giveaway_type.__name__}: {e}")
             return {giveaway_type.identifier: list()}
 
     @classmethod
     def _steam_free_weekend(cls) -> dict[str, list]:
-        return cls._data_from_server(SteamFreeWeekend, SteamApiScraper)
+        return cls._get_data_from_server(SteamFreeWeekend, SteamApiScraper)
 
     @classmethod
     def _steam_giveaway(cls) -> dict[str, list]:
-        return cls._data_from_server(SteamGiveaways, SteamWebScraper)
+        return cls._get_data_from_server(SteamGiveaways, SteamWebScraper)
 
     @classmethod
     def _epic_games_giveaway(cls) -> dict[str, list]:
-        return cls._data_from_server(EpicGamesGiveaways, EpicWebScraper)
+        return cls._get_data_from_server(EpicGamesGiveaways, EpicWebScraper)
 
 
 class AppBase(DataObtainer):
@@ -47,14 +46,11 @@ class AppBase(DataObtainer):
 
         if data_in_cache is None:
             data_from_server: dict[str, list] = method_to_call_server()
-            print(promo_key, data_from_server)
 
             promo_details: list = data_from_server[promo_key]
 
-
             if promo_details:  # if the server hasn't sent an empty list
                 cache.update_data(key=promo_key, value=promo_details)
-
         else:
             promo_details: list = data_in_cache
 
