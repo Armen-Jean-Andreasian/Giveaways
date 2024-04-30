@@ -4,7 +4,6 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from src.scraping import ApiScraper
     from src.scraping.scrapers import PageScraper
-    from src.models import HtmlStructure
 
 
 class Content(ABC):
@@ -58,7 +57,6 @@ class ScrapableContent(Content, ABC):
     params: dict
     xpath: str
     css_selector: str
-    html_structure: "HtmlStructure"
 
     @abstractmethod
     def __init__(self, page_scraper: "PageScraper"):

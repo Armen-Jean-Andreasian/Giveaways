@@ -2,6 +2,8 @@ from abc import ABC, abstractmethod
 from .requests_ import get_url
 from .selenium_ import SeleniumScraper
 import time
+from selenium.common.exceptions import *
+from src.logger import Logger
 
 
 # abstraction level 0: what's a scraper
@@ -51,9 +53,14 @@ class WebpageScraperSelenium(WebPageScraper, ABC):
         self.scraper.get(url)
         time.sleep(wait)
 
-        html_code = self.scraper.page_source
-        self.scraper.quit()
-        return html_code
+        try:
+            html_code = self.scraper.page_source
+        except InvalidArgumentException:  # if url not found
+            self.scraper.quit()
+            return str()
+        else:
+            self.scraper.quit()
+            return html_code
 
 
 # implementations

@@ -14,11 +14,11 @@ class Cache:
         return cls
 
     @classmethod
-    def save_data(cls, giveaway_identifier: str, giveaway_content: dict):
+    def update_data(cls, key: str, value: list):
         """Saves data to cache"""
-        cls.cache[giveaway_identifier] = giveaway_content
+        cls.cache[key] = value
         return cls
 
     @classmethod
-    def find_data(cls, giveaway_identifier: str):
+    def find_data(cls, giveaway_identifier: str) -> None | list:
         return cls.cache[giveaway_identifier]
