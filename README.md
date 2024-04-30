@@ -21,7 +21,8 @@ For more detailed information read [documentation.md](docs/documentation.md)
 ---
 # Information
 
-- Steam: gathered from SteamAPI, Steam Store (none of them frequently change the structure)
+- Steam: gathered from SteamAPI, Steam Store (none of them frequently change the structure and don't have protection)
+- Epic Games: gathered from Epic Games Store (has anti-bot protection by cloudflare)
 
 ---
 # Integration
@@ -54,8 +55,6 @@ for key, val in deals.items():
 Result:
 
 ![img.png](github%2Fimg.png)
-
-*_No current 'free weekend' at this moment._
 
 ---
 
