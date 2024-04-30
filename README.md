@@ -12,6 +12,9 @@ As a piece of code this provides high readability and extendability.
     - -100% discounted bundles 
     - -100% discounted DLC-s
     - Temporarily free to access games (aka Free Weekend)
+  - Epic Games:
+    - -100% discounted games
+    - -100% discounted DLC-s
 
 For more detailed information read [documentation.md](docs/documentation.md)
 
