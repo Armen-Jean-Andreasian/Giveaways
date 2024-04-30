@@ -30,14 +30,12 @@ class Content(ABC):
         """
         # lazy initialization techniques
 
-        # if content is not fetched
         # noinspection PyUnresolvedReferences
-        if self.response is None:
+        if self.response is None:  # if content is not fetched yet
             self._fetch_content()
 
-        # if content is not analyzed
         # noinspection PyUnresolvedReferences
-        if self.result is None:
+        if self.result is None:  # if content is not analyzed yet
             # noinspection PyAttributeOutsideInit
             self.result = {self.identifier: list()}
             self._analyze_response()

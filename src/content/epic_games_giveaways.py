@@ -10,7 +10,7 @@ class EpicGamesGiveaways(ScrapableContent):
     def __init__(self, scraper):
         self.epic_games_scraper = scraper
         # noinspection PyTypeChecker
-        self.response: bytes = None
+        self.response: str = None
         # noinspection PyTypeChecker
         self.result: dict[str:list] = None
 

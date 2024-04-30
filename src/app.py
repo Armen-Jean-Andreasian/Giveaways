@@ -47,7 +47,9 @@ class AppBase(DataObtainer):
 
         if data_in_cache is None:
             data_from_server: dict[str, list] = method_to_call_server()
+
             promo_details: list = data_from_server[promo_key]
+            print(promo_key, promo_details)
 
             if promo_details:  # if the server hasn't sent an empty list
                 cache.update_data(key=promo_key, value=promo_details)
