@@ -1,6 +1,6 @@
 from .web_content import SteamFreeWeekend, SteamGiveaways, EpicGamesGiveaways
 from .scraping import SteamApiScraper, SteamWebScraper, EpicWebScraper
-from .logger import Logger
+from .loggers import ExceptionLogger
 from .helpers import TimeTracker
 from .cache import LocalCache
 from typing import Callable, Union
@@ -11,7 +11,7 @@ Scraper = Union[type(SteamApiScraper), type(SteamWebScraper), type(EpicWebScrape
 
 class DataObtainer:
     """Obtains data from web"""
-    logger = Logger()
+    logger = ExceptionLogger()
 
     @classmethod
     def _get_data_from_server(

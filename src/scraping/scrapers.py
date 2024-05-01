@@ -3,7 +3,7 @@ from .requests_ import get_url
 from .selenium_ import SeleniumScraper
 import time
 from selenium.common.exceptions import *
-from src.logger import Logger
+from src.loggers import ExceptionLogger
 
 
 # abstraction level 0: what's a scraper

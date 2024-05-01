@@ -10,10 +10,10 @@ def memory_usage_decorator_factory(print_delta: bool = False, return_delta: bool
             method(*args, **kwargs)
             mem_usage_after = memory_profiler.memory_usage()[0]
 
-            delta: float = mem_usage_after - mem_usage_before
+            delta = mem_usage_after - mem_usage_before
 
             if print_delta:
-                print(f"Memory usage of {method.__name__}: {delta} MB")
+                print(f"Memory usage of {method.__name__}: {delta} MB ")
 
             if return_delta:
                 return delta

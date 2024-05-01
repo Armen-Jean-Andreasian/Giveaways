@@ -14,7 +14,7 @@ def execution_time_decorator_factory(print_delta: bool = False, return_delta: bo
             delta: float = end_time - start_time
 
             if print_delta:
-                print(f"Execution time of {method.__name__}: {delta} ")
+                print(f"Execution time of {method.__name__}: {delta} seconds.")
 
             if return_delta:
                 return delta

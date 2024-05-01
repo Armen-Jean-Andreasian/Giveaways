@@ -63,7 +63,7 @@ Users are solely responsible for their actions and should adhere to all applicab
     - Naturally, it includes all necessary methods such as 'get', 'reset', and 'update'.
     - For this project, it is programmed to automatically reset after midnight in the USA Eastern Time Zone.
 
-4. **Logger**:
+4. **ExceptionLogger**:
     - Custom logger designed to log exceptions with maximum information.
 
 For more detailed information read [documentation.md](docs/documentation.md)
