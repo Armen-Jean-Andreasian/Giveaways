@@ -43,7 +43,28 @@ Users are solely responsible for their actions and should adhere to all applicab
  
 ---
 
-# Coming Soon
+# Program consists of:
+
+1. **Scrapers**:
+    - Due to the highest level of abstraction achieved, almost all types of case-specific scrapers are divided by needs and use cases.
+    - Two main types of parsers are highlighted for this project:
+        - `requests`-based scrapers
+          - Are used to request APIs and web sources without protection. These may be replaced with aiohttp in the future if the number of sources grows.
+        - `selenium`-based scrapers.
+          - Are used to request web sources with possible anti-bot and anti-scraping protections. This is a straightforward, time-tested tool that never disappoints.
+
+2. **Content**:
+    - Due to the highest level of abstraction, almost all web content on the internet is managed to be implemented according to its:
+        - origin and method of obtaining,
+        - type for further analysis and processing.
+
+3. **Cache**:
+    - Custom cache designed to be a local key-value in-memory cache, similar to Redis, with timestamp functionality similar to ORM implementations.
+    - Naturally, it includes all necessary methods such as 'get', 'reset', and 'update'.
+    - For this project, it is programmed to automatically reset after midnight in the USA Eastern Time Zone.
+
+4. **Logger**:
+    - Custom logger designed to log exceptions with maximum information.
 
 For more detailed information read [documentation.md](docs/documentation.md)
 

@@ -9,10 +9,10 @@ class TimeTracker:
         return datetime.now(timezone(timedelta(hours=-5)))
 
     @staticmethod
-    def is_within_same_day(previous_time: datetime) -> bool:
+    def is_within_same_day(old_timestamp: datetime) -> bool:
         current_time_usa = TimeTracker.get_current_datetime()
 
-        return previous_time.date() == current_time_usa.date()
+        return old_timestamp.date() == current_time_usa.date()
 
 
 class ResponseGenerator:

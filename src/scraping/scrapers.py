@@ -16,7 +16,7 @@ class Scraper(ABC):
 
 # abstraction level 1 : what type of scrapers are there
 class WebPageScraper(Scraper, ABC):
-    # webpage scrapers can use a directs requests_ to the source, or a third-party tool
+    # webpage scrapers can use a directs requests to the source, or a third-party tool
     ...
 
 

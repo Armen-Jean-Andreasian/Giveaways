@@ -16,8 +16,22 @@ class LocalCache:
         cache (dict): A dictionary to store key-value pairs.
         timestamp (datetime): The current datetime when the cache was last modified.
     """
-    cache = {SteamFreeWeekend.identifier: None, SteamGiveaways.identifier: None, EpicGamesGiveaways.identifier: None}
-    timestamp: datetime = TimeTracker.get_current_datetime()
+    cache: dict = None
+    timestamp: datetime = None
+
+    status: bool = cache is dict  # if cache was initialized
+
+    @classmethod
+    def initialize(cls, cache_structure: dict, timestamp: datetime):
+        """
+        Initializes the cache
+        :param cache_structure: the default cache dict with {"key":None} items.
+        :param timestamp: the current time
+        :return:
+        """
+        cls.cache = cache_structure
+        cls.timestamp = timestamp
+        return cls
 
     @classmethod
     def reset(cls):

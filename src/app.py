@@ -10,6 +10,7 @@ Scraper = Union[type(SteamApiScraper), type(SteamWebScraper), type(EpicWebScrape
 
 
 class DataObtainer:
+    """Obtains data from web"""
     logger = Logger()
 
     @classmethod
@@ -40,6 +41,12 @@ class DataObtainer:
 
 
 class AppBase(DataObtainer):
+    structure_in_cache = {
+        SteamFreeWeekend.identifier: None,
+        SteamGiveaways.identifier: None,
+        EpicGamesGiveaways.identifier: None
+    }
+
     @staticmethod
     def _process_promotion(promo_key: str, cache: LocalCache, method_to_call_server: Callable, result: dict):
         data_in_cache: None | list = cache.find_data(promo_key)
@@ -58,15 +65,26 @@ class AppBase(DataObtainer):
         promo_container: dict = {promo_key: promo_details}
         result.update(promo_container)
 
+    @classmethod
+    def _prepare_cache(cls):
+        """Does cache validity checks, sets it for app usage."""
+
+        if LocalCache.status is False:  # if the cache was not initialized
+            LocalCache.initialize(cache_structure=cls.structure_in_cache, timestamp=TimeTracker.get_current_datetime())
+
+        else:
+            # if cache was already initialized, but values are outdated - resetting the cache
+            if not TimeTracker.is_within_same_day(old_timestamp=LocalCache.timestamp):
+                LocalCache.reset()
+        return cls
+
 
 class App(AppBase):
     """
     Main class of the app.
-    It holds _cache class attribute which gets filled partially. In the end of the day (by USA time) it resets.
 
     The class provides one method: get_deals.
     If an error occurs it's being logged, but no errors will be raised.
-
     """
 
     @classmethod
@@ -75,12 +93,11 @@ class App(AppBase):
                   steam_giveaways: bool = False,
                   epic_games_giveaways: bool = False) -> dict:
 
+        # preparing the app cache
+        cls._prepare_cache()
+
         # predefining the result
         result = dict()
-
-        # if the data is outdated, resetting it
-        if not TimeTracker.is_within_same_day(LocalCache.timestamp):
-            LocalCache.reset()
 
         # processing
         if steam_free_weekend:
