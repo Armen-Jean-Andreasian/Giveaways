@@ -1,8 +1,8 @@
-from .content import SteamFreeWeekend, SteamGiveaways, EpicGamesGiveaways
+from .web_content import SteamFreeWeekend, SteamGiveaways, EpicGamesGiveaways
 from .scraping import SteamApiScraper, SteamWebScraper, EpicWebScraper
 from .logger import Logger
-from .misc import TimeTracker
-from .cache import Cache
+from .helpers import TimeTracker
+from .cache import LocalCache
 from typing import Callable, Union
 
 Giveaway = Union[type(SteamFreeWeekend), type(SteamGiveaways), type(EpicGamesGiveaways)]
@@ -41,7 +41,7 @@ class DataObtainer:
 
 class AppBase(DataObtainer):
     @staticmethod
-    def _process_promotion(promo_key: str, cache: Cache, method_to_call_server: Callable, result: dict):
+    def _process_promotion(promo_key: str, cache: LocalCache, method_to_call_server: Callable, result: dict):
         data_in_cache: None | list = cache.find_data(promo_key)
 
         if data_in_cache is None:
@@ -79,20 +79,20 @@ class App(AppBase):
         result = dict()
 
         # if the data is outdated, resetting it
-        if not TimeTracker.is_within_same_day(Cache.last_updated_datetime):
-            Cache.reset()
+        if not TimeTracker.is_within_same_day(LocalCache.timestamp):
+            LocalCache.reset()
 
         # processing
         if steam_free_weekend:
-            cls._process_promotion(promo_key=SteamFreeWeekend.identifier, cache=Cache,
+            cls._process_promotion(promo_key=SteamFreeWeekend.identifier, cache=LocalCache,
                                    method_to_call_server=cls._steam_free_weekend, result=result)
 
         if steam_giveaways:
-            cls._process_promotion(promo_key=SteamGiveaways.identifier, cache=Cache,
+            cls._process_promotion(promo_key=SteamGiveaways.identifier, cache=LocalCache,
                                    method_to_call_server=cls._steam_giveaway, result=result)
 
         if epic_games_giveaways:
-            cls._process_promotion(promo_key=EpicGamesGiveaways.identifier, cache=Cache,
+            cls._process_promotion(promo_key=EpicGamesGiveaways.identifier, cache=LocalCache,
                                    method_to_call_server=cls._epic_games_giveaway, result=result)
 
         return result

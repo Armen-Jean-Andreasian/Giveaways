@@ -1,4 +1,4 @@
-from src.content import EpicGamesGiveaways
+from src.web_content import EpicGamesGiveaways
 
 
 class EpicGamesGiveawaysForDebugging(EpicGamesGiveaways):

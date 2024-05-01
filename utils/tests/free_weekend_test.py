@@ -1,5 +1,5 @@
 import unittest
-from src.content import SteamFreeWeekend
+from src.web_content import SteamFreeWeekend
 from src.scraping import SteamApiScraper
 
 

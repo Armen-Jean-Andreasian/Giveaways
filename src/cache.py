@@ -1,10 +1,23 @@
-from .content import SteamFreeWeekend, SteamGiveaways, EpicGamesGiveaways
-from .misc import TimeTracker
+from .web_content import SteamFreeWeekend, SteamGiveaways, EpicGamesGiveaways
+from .helpers import TimeTracker
+import datetime
 
 
-class Cache:
+class LocalCache:
+    """
+    Local key-value cache with timestamp functionality.
+
+    This class provides a simple in-memory cache with key-value pairs, along with
+    timestamp functionality similar to ORM implementations. It mimics the 
+    functionality of a key-value store like Redis but operates locally within
+    the application.
+
+    Attributes:
+        cache (dict): A dictionary to store key-value pairs.
+        timestamp (datetime): The current datetime when the cache was last modified.
+    """
     cache = {SteamFreeWeekend.identifier: None, SteamGiveaways.identifier: None, EpicGamesGiveaways.identifier: None}
-    last_updated_datetime = TimeTracker.get_current_datetime()
+    timestamp: datetime = TimeTracker.get_current_datetime()
 
     @classmethod
     def reset(cls):

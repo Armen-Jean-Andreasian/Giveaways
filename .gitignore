@@ -10,3 +10,7 @@ __pycache__/
 error.log
 /dev
 /debugging_result.html
+/utils/dev.py
+/utils/dev.txt
+
+/test.json

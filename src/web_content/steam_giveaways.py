@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 from typing import TYPE_CHECKING
 from .content_types import ScrapableContent
-from src.models import ResponseModel
+from ..helpers import ResponseGenerator
 
 if TYPE_CHECKING:
     from src.scraping import SteamWebScraper
@@ -42,7 +42,7 @@ class SteamGiveaways(ScrapableContent):
             rectangle_img_url = f"https://cdn.cloudflare.steamstatic.com/steam/apps/{game_id}/header.jpg"
 
             # saving to dictionary
-            response: dict = ResponseModel.prototype(
+            response: dict = ResponseGenerator.prototype(
                 game_name=game_name,
                 game_id=game_id,
                 game_url=game_url,

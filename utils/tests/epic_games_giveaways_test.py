@@ -1,5 +1,5 @@
 import unittest
-from src.content import EpicGamesGiveaways
+from src.web_content import EpicGamesGiveaways
 from src.scraping import EpicWebScraper
 
 

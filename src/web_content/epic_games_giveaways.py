@@ -1,6 +1,6 @@
 from .content_types import ScrapableContent
 from bs4 import BeautifulSoup
-from src.models import ResponseModel
+from src.helpers import ResponseGenerator
 
 
 class EpicGamesGiveaways(ScrapableContent):
@@ -33,7 +33,7 @@ class EpicGamesGiveaways(ScrapableContent):
                     game_url: str = "https://store.epicgames.com/" + game.find("a")["href"]
                     rectangle_img_url: str = game.find("img")["src"]
 
-                    response: dict = ResponseModel.prototype(
+                    response: dict = ResponseGenerator.prototype(
                         game_name=game_name,
                         game_url=game_url,
                         rectangle_img_url=rectangle_img_url

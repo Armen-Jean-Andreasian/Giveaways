@@ -1,5 +1,5 @@
 from .content_types import RequestableContent
-from src.models import ResponseModel
+from ..helpers import ResponseGenerator
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
@@ -62,7 +62,7 @@ class SteamFreeWeekend(RequestableContent):
                         square_img_url = capsule_dict["header_image"]
 
                         # saving to dictionary.
-                        response: dict = ResponseModel.prototype(
+                        response: dict = ResponseGenerator.prototype(
                             game_id=game_id,
                             game_url=game_url,
                             img_url_square=square_img_url,

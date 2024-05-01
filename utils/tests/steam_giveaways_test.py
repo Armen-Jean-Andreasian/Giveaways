@@ -1,5 +1,5 @@
 import unittest
-from src.content import SteamGiveaways
+from src.web_content import SteamGiveaways
 from src.scraping import SteamWebScraper
 
 
