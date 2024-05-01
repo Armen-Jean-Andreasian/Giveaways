@@ -1,5 +1,5 @@
 # It's Game Giveaways!
-![cover.png](github%2Fcover.png)
+![cover.png](images%2Fcover.png)
 Introducing Game Giveaways, the ultimate toolkit for every gamer!
 
 ---
@@ -8,7 +8,7 @@ _Game Giveaways is engineered with cutting-edge technologies and industry-leadin
 
 ---
 
-![info_3.jpg](github%2Finfo_3.jpg)
+![info_3.jpg](images%2Finfo_3.jpg)
 
 ---
 # Overview
@@ -45,7 +45,7 @@ Users are solely responsible for their actions and should adhere to all applicab
 
 # Coming Soon
 
-For more detailed information read [documentation.md](documentation.md)
+For more detailed information read [documentation.md](../docs/documentation.md)
 
 ---
 # Credits:
