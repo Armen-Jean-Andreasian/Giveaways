@@ -45,7 +45,7 @@ Users are solely responsible for their actions and should adhere to all applicab
 
 # Coming Soon
 
-For more detailed information read [documentation.md](../docs/documentation.md)
+For more detailed information read [documentation.md](docs/documentation.md)
 
 ---
 # Credits:
